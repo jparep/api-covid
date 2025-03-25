@@ -1,0 +1,31 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore environment files
+.env
+*.env
+
+# Ignore credentials and sensitive files
+secrets.yml
+*.key
+*.pem
+*.crt
+
+# Ignore DBT compiled and target directories
+dbt_modules/
+target/
+logs/
+
+# Ignore Snowflake connection files
+*.snowflake
+*.dbt
+
+# Ignore IDE specific files
+.vscode/
+.idea/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
