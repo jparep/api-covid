@@ -41,19 +41,21 @@ try:
         warehouse=os.getenv('SNOWFLAKE_WAREHOUSE'),
         database=os.getenv('SNOWFLAKE_DATABASE'),
         schema=os.getenv('SNOWFLAKE_SCHEMA'),
+        table=os.getenv('SNOWFLAKE_TABLE'),
         role=os.getenv('SNOWFLAKE_ROLE')
     )
 
     cursor = conn.cursor()
 
     # Step 4: Bulk insert into Snowflake
-    insert_query = """
-        INSERT INTO stats (country, cases, deaths, recovered, active, updated)
+    insert_query = f"""
+        INSERT INTO {os.getenv('SNOWFLAKE_DATABASE')}.{os.getenv('SNOWFLAKE_SCHEMA')}.{os.getenv('SNOWFLAKE_TABLE')}
+        (country, cases, deaths, recovered, active, updated)
         VALUES (%s, %s, %s, %s, %s, %s)
     """
     cursor.executemany(insert_query, rows)
 
-    print(f"✅ {len(rows)} rows successfully ingested into Snowflake table covid.raw.stats at {datetime.utcnow()} UTC")
+    print(f"✅ {len(rows)} rows successfully ingested into Snowflake table {os.getenv('SNOWFLAKE_DATABASE')}.{os.getenv('SNOWFLAKE_SCHEMA')}.{os.getenv('SNOWFLAKE_TABLE')} at {datetime.utcnow()} UTC")
 
 except requests.exceptions.RequestException as e:
     print(f"❌ API Error: {e}")
