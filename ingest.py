@@ -55,14 +55,14 @@ try:
     """
     cursor.executemany(insert_query, rows)
 
-    print(f"✅ {len(rows)} rows successfully ingested into Snowflake table {os.getenv('SNOWFLAKE_DATABASE')}.{os.getenv('SNOWFLAKE_SCHEMA')}.{os.getenv('SNOWFLAKE_TABLE')} at {datetime.utcnow()} UTC")
+    print(f"{len(rows)} rows successfully ingested into Snowflake table {os.getenv('SNOWFLAKE_DATABASE')}.{os.getenv('SNOWFLAKE_SCHEMA')}.{os.getenv('SNOWFLAKE_TABLE')} at {datetime.utcnow()} UTC")
 
 except requests.exceptions.RequestException as e:
-    print(f"❌ API Error: {e}")
+    print(f" API Error: {e}")
 except snowflake.connector.errors.Error as e:
-    print(f"❌ Snowflake Error: {e}")
+    print(f"Snowflake Error: {e}")
 except Exception as e:
-    print(f"❌ General Error: {e}")
+    print(f" General Error: {e}")
 finally:
     if 'cursor' in locals():
         cursor.close()
