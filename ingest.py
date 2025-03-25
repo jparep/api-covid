@@ -14,12 +14,13 @@ df = df[['country', 'cases', 'deaths', 'recovered', 'active', 'updated']]
 
 # Step 3: Connect to Snowflake
 conn = snowflake.connector.connect(
-    user='YOUR_USERNAME',
-    password='YOUR_PASSWORD',
-    account='YOUR_ACCOUNT_ID',  # Example: 'xy12345.us-east-1'
-    warehouse='YOUR_WAREHOUSE',
-    database='YOUR_DATABASE',
-    schema='YOUR_SCHEMA'
+    user='SNOWFLAKE_USER',
+    password='SNOWFLAKE_PASSWORD',
+    account='SNOWFLAKE_ACCOUNT',  # Example: 'xy12345.us-east-1'
+    warehouse='SNOWFLAKE_WAREHOUSE',
+    database='SNOWFLAKE_DATABASE',
+    schema='YOUR_SCHEMA',
+    role='SNOWFLAKE_ROLE'
 )
 
 # Step 4: Create a cursor
